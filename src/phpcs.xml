@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<ruleset name="Custom PSR12">
+<description>A custom PSR12</description>
+<file>./</file>
+<!-- ./vendor/以下のファイルは検査対象としない -->
+<exclude-pattern>./vendor/*</exclude-pattern>
+ <arg name="colors"/>
+ <arg value="s"/>
+<rule ref="PSR12">
+    <!-- 適用したく無いルールはexcludeに記述するようにする -->
+		<!-- 定数名が全て大文字になっているかというルールを除外する設定　←本来は良くないためこんな除外ルールは不要 -->
+    <exclude name="Generic.NamingConventions.UpperCaseConstantName.ClassConstantNotUpperCase"/>
+ </rule>
+</ruleset>
