@@ -1,9 +1,5 @@
 <?php
 
-use Dotenv;
-use PDO;
-use PDOStatement;
-
 //vendorディレクトリの階層を指定する
 require __DIR__ . '/../../vendor/autoload.php';
 
@@ -28,7 +24,6 @@ class DataSource
         $this->dbDatabase = $_ENV['DB_DATABASE'];
         $dsn = "mysql:host=" . $this->dbHost . ";dbname=" . $this->dbDatabase . ";charset=utf8mb4";
         $this->conn = new PDO($dsn, $this->dbUsername, $this->dbPassword);
-
     }
 
     //取得下データを返す
@@ -38,14 +33,10 @@ class DataSource
      *  @param string $type
      *  @param string $cls
      */
-    public function select(string $sql = "", array $params = [], string $type = '', string $cls = ''): mixed
+    public function select(string $sql = "", array $params = []): mixed
     {
         $stmt = $this->executeSql($sql, $params);
-        if ($type === static::CLS) {
-            return $stmt->fetchAll(PDO::FETCH_CLASS, $cls);
-        } else {
-            return $stmt->fetchAll();
-        }
+        return $stmt->fetchAll();
     }
 
     //取得したデータから１行取得
@@ -55,10 +46,10 @@ class DataSource
      *  @param string $type
      *  @param string $cls
      */
-    
-    public function selectOne(string $sql = "", array $params = [], string $type = '', string $cls = ''): mixed
+
+    public function selectOne(string $sql = "", array $params = []): mixed
     {
-        $result = $this->select($sql, $params, $type, $cls);
+        $result = $this->select($sql, $params);
         return count($result) > 0 ? $result[0] : false;
     }
 

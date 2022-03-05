@@ -2,7 +2,7 @@
     <div class="container" style="margin-top: 90px;">
         <p>記入した内容を確認して、「新規登録する」ボタンをクリックしてください。</p>
         <form action="check_signup.php" method="POST">
-            <input type="hidden" name="action" value="submit" />
+            <input type="hidden" name="userAdd" value="submit" />
             <dl>
                 <dt>メールアドレス</dt>
                 <dd>

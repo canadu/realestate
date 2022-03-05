@@ -1,4 +1,5 @@
 <?php
-function escape($var) {
-    return htmlspecialchars($var);
+function escape($var)
+{
+    return isset($var) ? $var : '';
 }

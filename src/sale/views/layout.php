@@ -1,5 +1,13 @@
+<?php
+
+namespace lib;
+
+use lib\User;
+
+?>
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +16,7 @@
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <title><?php echo $title; ?></title>
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-md navbar-light bg-light">
@@ -21,8 +30,8 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="myNavbar">
                     <ul class="navbar-nav">
-                        <li class="nav-item"><a href="login.php" class="nav-link">ログイン</a></li>
-                        <li class="nav-item"><a href="signup.php" class="nav-link">ユーザー登録</a></li>
+                        <li class="nav-item"><a href="login.php" class="nav-link">マイページログイン</a></li>
+                        <li class="nav-item"><a href="signup.php" class="nav-link">会員登録</a></li>
                     </ul>
                 </div>
             </div>
@@ -38,4 +47,5 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </body>
+
 </html>
