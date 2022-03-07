@@ -1,5 +1,5 @@
 <?php
-function escape($var)
+function escape($string)
 {
-    return isset($var) ? $var : '';
+    return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
 }

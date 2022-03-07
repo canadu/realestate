@@ -1,6 +1,7 @@
 <?php
 
 require_once(__DIR__ . "/lib/user.php");
+require_once(__DIR__ . "/lib/escape.php");
 
 session_start();
 
@@ -9,9 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'email' => $_POST['email'],
         'password' => $_POST['password']
     ];
-
     $objUser = new User;
-
     //パスワードの入力チェック
     $errors = $objUser->validate($user);
     if (!$errors) {
@@ -23,17 +22,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $user['password'] = '';
     }
-    // } elseif ($_REQUEST['action'] === 'rewrite' && isset($_SESSION['user'])) {
-    //     $_POST = $_SESSION['user'];
-    //     $user = [
-    //         'email' => $_POST['email'],
-    //         'password' => '',
-    //     ];
-    // } else {
-    //     $user = [
-    //         'email' => '',
-    //         'password' => '',
-    //     ];
+} elseif (!isset($_REQUEST['action'])) {
+    $user = [
+        'email' => '',
+        'password' => '',
+    ];
+} elseif ($_REQUEST['action'] === 'rewrite' && isset($_SESSION['user'])) {
+        $_POST = $_SESSION['user'];
+        $user = [
+            'email' => $_POST['email'],
+            'password' => '',
+        ];
 }
 $title = '会員登録';
 $content = __DIR__ . '/views/user/signup.php';
