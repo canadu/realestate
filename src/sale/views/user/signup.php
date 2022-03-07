@@ -5,7 +5,7 @@
             <form action="signup.php" method="POST">
                 <div class="form-group">
                     <label for="email"><span class="badge bg-danger text-white">必須</span> メールアドレス</label>
-                    <input class="form-control" type="email" placeholder="メールアドレス" id="email" name="email" value="" autofocus required="required">
+                    <input class="form-control" type="email" placeholder="メールアドレス" id="email" name="email" value="<?= escape($user['email']); ?>" autofocus required="required">
                     <?php if (isset($errors['email'])) : ?>
                         <ul class="text-danger">
                             <li><?= $errors['email'] ?></li>
@@ -15,7 +15,7 @@
                 <div class="form-group">
                     <label for="password"><span class="badge bg-danger text-white">必須</span> パスワード</label>
 
-                    <input class="form-control js-password" type="password" placeholder="パスワード" id="password" name="password" value="" autocomplete="off" required="required">
+                    <input class="form-control js-password" type="password" placeholder="パスワード" id="password" name="password" value="<?= escape($user['password']); ?>" autocomplete="off" required="required">
                     <?php if (isset($errors['password'])) : ?>
                         <ul class="text-danger">
                             <li><?= $errors['password'] ?></li>
