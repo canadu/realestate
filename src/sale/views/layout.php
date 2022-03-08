@@ -16,12 +16,15 @@
                     <img src="img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
                     ××不動産
                 </a>
+                <!-- ハンバーガーメニュー -->
+                <!-- data-targetにcollapseを指定したdivのidを指定すること -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse justify-content-end" id="myNavbar">
+                <!-- idは、上記ボタンのdata-targetに指定したものと揃えること -->
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item"><a href="public/user/login.php" class="nav-link">マイページログイン</a></li>
+                        <li class="nav-item"><a href="login.php" class="nav-link">マイページログイン</a></li>
                         <li class="nav-item"><a href="signup.php" class="nav-link">会員登録</a></li>
                     </ul>
                 </div>

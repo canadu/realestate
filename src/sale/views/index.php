@@ -1,5 +1,8 @@
 <main>
     <div class="container">
-        <h2>テステス</h2>
+        <div class="row">
+            <h2>テスト</h2>
+        </div>
+    </div>
     </div>
 </main>
