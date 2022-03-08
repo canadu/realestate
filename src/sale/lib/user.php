@@ -18,15 +18,27 @@ class User
         return $result;
     }
 
+    function mail_validate($user): array 
+    {
+        $errors = [];
+        if (!strlen($user['email'])) {
+            $errors['email'] = 'メールアドレスを入力してください';
+        } elseif (!filter_var($user['email'], FILTER_VALIDATE_EMAIL)) {
+            $errors['email'] = 'メールアドレスが正しくありません。';
+        }
+        return $errors;
+    }
+
     //バリデーション処理
     function validate($user): array
     {
         $errors = [];
+        
         //email
         if (!strlen($user['email'])) {
-            $errors['email'] = 'Emailを入力してください';
+            $errors['email'] = 'メールアドレスを入力してください';
         } elseif (!filter_var($user['email'], FILTER_VALIDATE_EMAIL)) {
-            $errors['email'] = 'Emailが正しくありません。';
+            $errors['email'] = 'メールアドレスが正しくありません。';
         }
         //パスワード
         if (!strlen($user['password'])) {

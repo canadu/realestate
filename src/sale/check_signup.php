@@ -1,7 +1,7 @@
 <?php
 
 require_once(__DIR__ . '/lib/user.php');
-require_once(__DIR__ . "/lib/escape.php");
+require_once(__DIR__ . '/lib/escape.php');
 
 session_start();
 
