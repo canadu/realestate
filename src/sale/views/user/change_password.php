@@ -5,7 +5,7 @@
         <div class="card container mt-4 p-4 shadow-sm">
             <form action="change_password.php" method="POST">
                 <div class="form-group">
-                    <label for="email">メールアドレス</label>>
+                    <label for="email">メールアドレス</label>
                     <input class="form-control" type="email" id="email" name="email" value="<?= escape($user['email']); ?>">
                     <?php if (isset($errors['email'])) : ?>
                         <div class="text-danger">

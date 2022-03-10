@@ -18,7 +18,7 @@ class User
         return $result;
     }
 
-    function mail_validate($user): array 
+    function mail_validate($user): array
     {
         $errors = [];
         if (!strlen($user['email'])) {
@@ -33,7 +33,7 @@ class User
     function validate($user): array
     {
         $errors = [];
-        
+
         //email
         if (!strlen($user['email'])) {
             $errors['email'] = 'メールアドレスを入力してください';
@@ -46,10 +46,10 @@ class User
         } elseif (strlen($user['password']) > 20) {
             $errors['password'] = 'パスワードは20文字以内で入力してください';
         }
-        
+
         //ユーザーの存在確認
         if (empty($this->mode)) {
-            if  (count($errors) == 0) {
+            if (count($errors) == 0) {
                 //エラーがなかった場合のみ存在確認を行う
                 if ($this->getUser($user['email']) > 0) {
                     $errors['email'] = '同じユーザーが既に存在します。';
@@ -66,19 +66,19 @@ class User
     {
         // try {
         $db = new DataSource;
-        $sql = 'INSERT INTO user(email,password,createTime,updateTime) VALUES (:email, :password, :createTime, :updateTime)';
+        $sql = 'INSERT INTO user(email,password,create_datetime,update_datetime) VALUES (:email, :password, :create_datetime, :update_datetime)';
         $db->execute($sql, [
             ':email' => $user,
             ':password' => $password,
-            ':createTime' => date("Y-m-d H:i:s"),
-            ':updateTime' => date("Y-m-d H:i:s"),
+            ':create_datetime' => date("Y-m-d H:i:s"),
+            ':update_datetime' => date("Y-m-d H:i:s"),
         ]);
     }
 
     /*
     ログイン時のバリデーションチェック
     */
-    function Validate_login($user):array 
+    function Validate_login($user): array
     {
         $errors = [];
         $errors = $this->validate($user);
@@ -86,10 +86,21 @@ class User
             // ユーザー情報を取得する
             $result = $this->getUser($user['email']);
             //パスワードがハッシュと一致するかの確認
-            if (!password_verify($user['password'], $result['password'])) {    
+            if (!password_verify($user['password'], $result['password'])) {
                 $errors['user'] = 'メールアドレス、パスワードのどちらかに誤りがあります。';
             }
         }
         return $errors;
+    }
+    function addResetToken(string $email, string $token)
+    {
+        $db = new DataSource;
+        $sql = 'UPDATE user(pass_reset_token,pass_reset_limit,update_datetime) SET (:token, :limit, :update_datetime) WHERE email=:email';
+        $db->execute($sql, [
+            ':email' => $email,
+            ':pass_reset_token' => $token,
+            ':pass_reset_limit' => date("Y-m-d H:i:s", strtotime("+1 day")),
+            ':update_datetime' => date("Y-m-d H:i:s"),
+        ]);
     }
 }
