@@ -74,7 +74,6 @@ class User
             ':update_datetime' => date("Y-m-d H:i:s"),
         ]);
     }
-
     /*
     ログイン時のバリデーションチェック
     */
@@ -92,15 +91,32 @@ class User
         }
         return $errors;
     }
-    function addResetToken(string $email, string $token)
+
+    function updResetToken(string $email, string $token)
     {
         $db = new DataSource;
-        $sql = 'UPDATE user(pass_reset_token,pass_reset_limit,update_datetime) SET (:token, :limit, :update_datetime) WHERE email=:email';
+        $sql = 'UPDATE user 
+                SET pass_reset_token = :pass_reset_token, 
+                    pass_reset_limit = :pass_reset_limit,
+                    update_datetime = :update_datetime WHERE email = :email';         
         $db->execute($sql, [
             ':email' => $email,
             ':pass_reset_token' => $token,
             ':pass_reset_limit' => date("Y-m-d H:i:s", strtotime("+1 day")),
             ':update_datetime' => date("Y-m-d H:i:s"),
         ]);
+    }
+
+    function getRestToken(string $email, string $token) 
+    {
+        $db = new DataSource();
+        $result = $db->selectOne(
+            'SELECT * FROM user WHERE email = :email and pass_reset_token = :pass_reset_token',
+            [
+                ':email' => $email,
+                ':pass_reset_token' => $token
+            ]
+        );
+        return $result;
     }
 }

@@ -5,6 +5,7 @@ RUN apt-get update && apt-get -y install vim \
 
 WORKDIR /var/www/html
 
+
 # PHP で必要なライブラリをインストール
 RUN apt-get update \
     && apt-get install -y libonig-dev libzip-dev unzip mariadb-client \
