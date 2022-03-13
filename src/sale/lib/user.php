@@ -92,29 +92,30 @@ class User
         return $errors;
     }
 
-    function updResetToken(string $email, string $token)
+
+    function updResetToken(string $id, string $token, string $limitDate)
     {
         $db = new DataSource;
         $sql = 'UPDATE user 
                 SET pass_reset_token = :pass_reset_token, 
                     pass_reset_limit = :pass_reset_limit,
-                    update_datetime = :update_datetime WHERE email = :email';         
+                    update_datetime = :update_datetime WHERE id = :id';
         $db->execute($sql, [
-            ':email' => $email,
+            ':id' => $id,
             ':pass_reset_token' => $token,
-            ':pass_reset_limit' => date("Y-m-d H:i:s", strtotime("+1 day")),
+            ':pass_reset_limit' => $limitDate,
             ':update_datetime' => date("Y-m-d H:i:s"),
         ]);
     }
 
-    function getRestToken(string $email, string $token) 
+    function getRestToken(string $id, string $token)
     {
         $db = new DataSource();
         $result = $db->selectOne(
-            'SELECT * FROM user WHERE email = :email and pass_reset_token = :pass_reset_token',
+            'SELECT * FROM user WHERE id = :id and pass_reset_token = :pass_reset_token',
             [
-                ':email' => $email,
-                ':pass_reset_token' => $token
+                ':id' => $id,
+                ':pass_reset_token' => $token,
             ]
         );
         return $result;
