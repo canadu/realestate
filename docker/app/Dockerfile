@@ -7,6 +7,11 @@ WORKDIR /var/www/html
 
 
 # PHP で必要なライブラリをインストール
+# RUN apt-get update \
+#     && apt-get install -y libonig-dev libzip-dev unzip mariadb-client \
+#     && docker-php-ext-install pdo_mysql mysqli mbstring zip 
+#     # && pecl install xdebug \
+#     # && docker-php-ext-enable xdebug
 RUN apt-get update \
     && apt-get install -y libonig-dev libzip-dev unzip mariadb-client \
     && docker-php-ext-install pdo_mysql mysqli mbstring zip \

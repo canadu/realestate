@@ -23,4 +23,69 @@ class DataSource
         $dsn = "mysql:host=" . $this->dbHost . ";dbname=" . $this->dbDatabase . ";charset=utf8mb4";
         $this->conn = new PDO($dsn, $this->dbUsername, $this->dbPassword);
     }
+
+//取得下データを返す
+    /**
+     *  @param string $sql
+     *  @param array<mixed> $params
+     *  @param string $type
+     *  @param string $cls
+     */
+    public function select(string $sql = "", array $params = []): mixed
+    {
+        $stmt = $this->executeSql($sql, $params);
+        return $stmt->fetchAll();
+    }
+
+    //取得したデータから１行取得
+    /**
+     *  @param string $sql
+     *  @param array<mixed> $params
+     *  @param string $type
+     *  @param string $cls
+     */
+
+    public function selectOne(string $sql = "", array $params = []): mixed
+    {
+        $result = $this->select($sql, $params);
+        return count($result) > 0 ? $result[0] : false;
+    }
+
+    //sql実行
+    /**
+     *  @param string $sql
+     *  @param array<mixed> $params
+     */
+    public function execute(string $sql = "", array $params = []): bool
+    {
+        $this->executeSql($sql, $params);
+        return  $this->sqlResult;
+    }
+
+    /**
+     *  @param string $sql
+     *  @param array<mixed> $params
+     */
+    private function executeSql(string $sql, array $params): PDOStatement
+    {
+        $stmt = $this->conn->prepare($sql);
+        $this->sqlResult = $stmt->execute($params);
+        return $stmt;
+    }
+
+    //トランザクション
+    public function begin(): void
+    {
+        $this->conn->beginTransaction();
+    }
+    public function commit(): void
+    {
+        $this->conn->commit();
+    }
+    public function rollback(): void
+    {
+        $this->conn->rollback();
+    }
+
+
 }
