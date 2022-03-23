@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="jp">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +9,6 @@
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <title>〇〇不動産</title>
 </head>
-
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark fixed-top" id="mainNav">
@@ -25,6 +23,17 @@
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="#search">検索</a>
                     </li>
+                    <?php 
+                    if(empty($_SESSION['username'])){
+                        echo '<li class="nav-item">';
+                        echo '  <a class="nav-link" href="./auth/login.php">ログイン</a>';
+                        echo '</li>';
+                    }else{
+                        echo '<li class="nav-item">';
+                        echo '<a class="nav-link" href="./auth/dashboard.php">Home</a>';
+                        echo '</li>';
+                    }
+                    ?>
                     <li class="nav-item">
                         <a class="nav-link" href="./auth/register.php">登録</a>
                     </li>
