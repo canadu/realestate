@@ -30,9 +30,9 @@ include '../include/side-nav.php';
 
         <div class="row">
             <!-- adminの場合 -->
+            <?php if($_SESSION['role'] == 'admin'): ?>
             <div class="container">
                 <div class="row">
-                    <?php if($_SESSION['role'] == 'admin'): ?>
                     <div class="col-md-4">
                         <a href="../app/users.php">
                             <div class="card-counter primary">
