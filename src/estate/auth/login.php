@@ -1,32 +1,34 @@
 <?php
 require '../db/dbConnect.php';
+include '../include/header.php';
 
 if(isset($_POST['login'])) {
     $userInfo = [];
     $userInfo['username'] = $_POST['username'];
     $userInfo['email'] = $_POST['username'];
     $userInfo['password'] = $_POST['password'];
-
     $db = new DataSource;
-    $data = $db->select('SELECT * FROM users WHERE username = :username OR email = :email', $userInfo);
+    $sql = "SELECT * FROM users WHERE username = :username OR email = :email";
+    $data = $db->select($sql, [
+        ':username' => $userInfo['username'],
+        ':email' => $userInfo['email'],
+    ]);
     if($data == false) {
         $errMsg = "ユーザーは存在しません。";
     } else {
-
+        //パスワードに誤りがないか
+        if($data['password'] == password_hash($userInfo['password'], PASSWORD_BCRYPT)){
+            $_SESSION['id'] = $data['id'];
+            $_SESSION['username'] = $data['username'];
+            $_SESSION['fullname'] = $data['fullname'];
+            $_SESSION['role'] = $data['role'];
+            header('Location:dashboard.php');
+            exit();
+        } else {
+            $errMsg = "ユーザーは存在しません。";
+        }
     }
-
-
 }
-
-
-
-
-
-
-
-
-
-include '../include/header.php';
 ?>
 
 <!-- nav -->
@@ -71,8 +73,8 @@ include '../include/header.php';
                             <label for="exampleInputPassword1">Password</label>
                             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" required>
                         </div>
-                        <div class="text-right">
-                            <button type="submit" class="btn btn-info w-25" name='login'>ログイン</button>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-info w-50" name='login'>ログイン</button>
                         </div>
                     </form>
                 </div>
