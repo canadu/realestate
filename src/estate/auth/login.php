@@ -9,7 +9,7 @@ if(isset($_POST['login'])) {
     $userInfo['password'] = $_POST['password'];
     $db = new DataSource;
     $sql = "SELECT * FROM users WHERE username = :username OR email = :email";
-    $data = $db->select($sql, [
+    $data = $db->selectOne($sql, [
         ':username' => $userInfo['username'],
         ':email' => $userInfo['email'],
     ]);
@@ -17,7 +17,7 @@ if(isset($_POST['login'])) {
         $errMsg = "ユーザーは存在しません。";
     } else {
         //パスワードに誤りがないか
-        if($data['password'] == password_hash($userInfo['password'], PASSWORD_BCRYPT)){
+        if (!password_verify($data['password'] , $userInfo['password'])) {
             $_SESSION['id'] = $data['id'];
             $_SESSION['username'] = $data['username'];
             $_SESSION['fullname'] = $data['fullname'];
