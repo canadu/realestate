@@ -1,4 +1,5 @@
 <?php
+session_start();
 require '../db/dbConnect.php';
 include '../include/header.php';
 include '../include/side-nav.php';

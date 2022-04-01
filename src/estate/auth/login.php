@@ -1,4 +1,5 @@
 <?php
+session_start();
 require '../db/dbConnect.php';
 include '../include/header.php';
 
@@ -22,7 +23,7 @@ if(isset($_POST['login'])) {
             $_SESSION['username'] = $data['username'];
             $_SESSION['fullname'] = $data['fullname'];
             $_SESSION['role'] = $data['role'];
-            header('Location:dashboard.php');
+            header('Location: dashboard.php'); 
             exit();
         } else {
             $errMsg = "ユーザーは存在しません。";
@@ -30,7 +31,6 @@ if(isset($_POST['login'])) {
     }
 }
 ?>
-
 <!-- nav -->
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#212529;" id="mainNav">
     <div class="container">
