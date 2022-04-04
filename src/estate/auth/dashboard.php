@@ -48,9 +48,11 @@ include '../include/header.php';
     </div>
 </nav>
 
-<?php include '../include/side-nav.php'; ?>
+<!-- <section class="wrapper" style="margin-left:16%;margin-top:-11%;"> -->
+<section class="wrapper">
 
-<section class="wrapper" style="margin-left:16%;margin-top:-11%;">
+    <?php include '../include/side-nav.php'; ?>
+
     <div class="col-md-12">
         <h1>Dashboard</h1>
         <div class="row">

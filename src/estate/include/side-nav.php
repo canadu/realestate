@@ -4,41 +4,49 @@ if (empty($_SESSION['role'])) {
     header('Location: login.php');
 }
 ?>
-<br>
-<nav class="navbar navbar-expand-sm navbar-default sidebar" style="background-color:#212529;" id="mainNav">
-    <div class="container">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            Menu
-            <i class="fa fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive1">
-            <ul class="navbar-nav text-center" style="flex-direction:column;">
-                <li class="nav-item">
-                    <a class="nav-link" href="../auth/dashboard.php">Home</a>
+<nav id="sidebar">
+    <div class="sidebar-header">
+        <h3>Bootstrap Sidebar</h3>
+    </div>
+
+    <ul class="list-unstyled components">
+        <p>Dummy Heading</p>
+        <li class="active">
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+            <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li>
+                    <a href="#">Home 1</a>
                 </li>
-                <!-- 登録 -->
-                <li class="nav-item">
-                    <?php if ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'user') {
-                        echo '<a href="../app/register.php" class="nav-link">Register</a>';
-                    } ?>
+                <li>
+                    <a href="#">Home 2</a>
                 </li>
-                <!-- リスト -->
-                <li class="nav-item">
-                    <a href="../app/list.php" class="nav-link">Details/Update</a>
-                </li>
-                <!-- SMS送信画面 -->
-                <li class="nav-item">
-                    <?php if ($_SESSION['role'] == 'admin') {
-                        echo '<a href="../app/sms.php" class="nav-link">Send SMS</a>';
-                    } ?>
-                </li>
-                <!-- 苦情リスト -->
-                <li class="nav-item">
-                    <?php if ($_SESSION['role'] == 'admin') {
-                        echo '<a href="../app/cmplist.php" class="nav-link">Complaint List</a>';
-                    } ?>
+                <li>
+                    <a href="#">Home 3</a>
                 </li>
             </ul>
-        </div>
-    </div>
+        </li>
+        <li>
+            <a href="#">About</a>
+        </li>
+        <li>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
+            <ul class="collapse list-unstyled" id="pageSubmenu">
+                <li>
+                    <a href="#">Page 1</a>
+                </li>
+                <li>
+                    <a href="#">Page 2</a>
+                </li>
+                <li>
+                    <a href="#">Page 3</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Portfolio</a>
+        </li>
+        <li>
+            <a href="#">Contact</a>
+        </li>
+    </ul>
 </nav>
