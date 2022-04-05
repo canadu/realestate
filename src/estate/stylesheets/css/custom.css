@@ -6,7 +6,7 @@ p {
   line-height: 1.75;
 }
 a {
-  color: #ff5722;
+  color: #ffffff;
 }
 a:hover {
   color: #e0491a;
@@ -232,116 +232,146 @@ ul.social-buttons li a {
 ul.social-buttons li a:active, ul.social-buttons li a:hover, ul.social-buttons li a:focus {
   background-color: #fed136;
 }
-.navbar-inverse {
-  background-color: #337ab7 !important;
-  border-color: #337ab7 !important;
+.wrapper {
+  display: flex;
+  align-items: stretch;
+  perspective: 1500px;
 }
-.navbar-inverse .navbar-nav > li > a {
-  color: black;
+#sidebar {
+  min-width: 250px;
+  max-width: 250px;
+  background: #808080;
+  color: #fff;
+  transition: all 0.6s cubic-bezier(0.945, 0.02, 0.27, 0.665);
+  transform-origin: center left;
 }
-.navbar-inverse .navbar-brand {
-  color: black;
+#sidebar.active {
+  margin-left: -250px;
+  transform: rotateY(100deg);
 }
-.nav-dash {
-  margin-bottom: 0px;
+#sidebar.sidebar-header {
+  padding: 20px;
+  background: #6d7fcc;
 }
-.navbar {
-  border-radius: 0px;
+#sidebar ul.components {
+  padding: 20px 0;
+  border-bottom: 1px solid #47748b;
 }
-.center {
+#sidebar ul p {
+  color: #fff;
+  padding: 10px;
+}
+#sidebar ul li a {
+  padding: 10px;
+  font-size: 1.1em;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 75%;
 }
-.awesome-text {
-  color: #fed136 !important;
-  font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive !important;
+#sidebar ul li a:hover {
+  color: #7386D5;
+  background: #fff;
 }
-nav.sidebar, .main {
-  -webkit-transition: margin 200ms ease-out;
-  -moz-transition: margin 200ms ease-out;
-  -o-transition: margin 200ms ease-out;
-  transition: margin 200ms ease-out;
+#sidebar ul li.active > a, #sidebar a[aria-expanded="true"] {
+  color: #fff;
+  background: #6d7fcc;
 }
-.main {
-  padding: 10px 10px 0 10px;
+a[data-toggle="collapse"] {
+  position: relative;
 }
-@media (min-width: 765px) {
-  .main {
-    position: absolute;
-    width: calc(100% - 40px);
-    margin-left: 40px;
-    float: right;
+.dropdown-toggle::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+ul ul a {
+  font-size: 0.9em !important;
+  padding-left: 30px !important;
+  background: #6d7fcc;
+}
+ul.CTAs {
+  padding: 20px;
+}
+ul.CTAs a {
+  text-align: center;
+  font-size: 0.9em !important;
+  display: block;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+a.download {
+  background: #fff;
+  color: #7386D5;
+}
+a.article, a.article:hover {
+  background: #6d7fcc !important;
+  color: #fff !important;
+}
+#content {
+  width: 100%;
+  padding: 20px;
+  min-height: 100vh;
+  transition: all 0.3s;
+}
+@media (max-width: 768px) {
+  /* Removing the vertical margin and make the first and last bars rotate again when the sidebar is open, hiding the second bar */
+  #sidebar {
+    margin-left: -250px;
+    transform: rotateY(100deg);
   }
-  nav.sidebar:hover + .main {
-    margin-left: 200px;
+  #sidebar.active {
+    margin-left: 0;
+    transform: none;
   }
-  nav.sidebar.navbar.sidebar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
-    margin-left: 0px;
+  #sidebarCollapse span:first-of-type, #sidebarCollapse span:nth-of-type(2), #sidebarCollapse span:last-of-type {
+    transform: none;
+    opacity: 1;
+    margin: 5px auto;
   }
-  nav.sidebar .navbar-brand, nav.sidebar .navbar-header {
-    text-align: center;
-    width: 100%;
-    margin-left: 0px;
+  #sidebarCollapse.active span {
+    margin: 0 auto;
   }
-  nav.sidebar .navbar-nav > li:first-child {
-    border-top: 1px #e5e5e5 solid;
+  #sidebarCollapse.active span:first-of-type {
+    transform: rotate(45deg) translate(2px, 2px);
   }
-  nav.sidebar .navbar-nav > li {
-    border-bottom: 1px #e5e5e5 solid;
-  }
-  nav.sidebar .navbar-nav .open .dropdown-menu {
-    position: static;
-    float: none;
-    width: auto;
-    margin-top: 0;
-    background-color: transparent;
-    border: 0;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-  }
-  nav.sidebar .navbar-collapse, nav.sidebar .container-fluid {
-    padding: 0 0px 0 0px;
-  }
-  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
-    color: #777;
-  }
-  nav.sidebar {
-    width: 200px;
-    height: 100%;
-    float: left;
-    margin-bottom: 0px;
-  }
-  nav.sidebar li {
-    width: 100%;
-  }
-  .forAnimate {
+  #sidebarCollapse.active span:nth-of-type(2) {
     opacity: 0;
   }
-}
-@media (min-width: 1330px) {
-  .main {
-    width: calc(100% - 200px);
-    margin-left: 200px;
-  }
-  nav.sidebar {
-    margin-left: 0px;
-    float: left;
-  }
-  nav.sidebar .forAnimate {
-    opacity: 1;
+  #sidebarCollapse.active span:last-of-type {
+    transform: rotate(-45deg) translate(1px, -1px);
   }
 }
-nav.sidebar .navbar-nav .open .dropdown-menu > li > a:hover, nav.sidebar .navbar-nav .open .dropdown-menu > li > a:focus {
-  color: #ccc;
-  background-color: transparent;
+#sidebarCollapse {
+  width: 40px;
+  height: 40px;
+  background: #f5f5f5;
 }
-nav:hover .forAnimate {
+#sidebarCollapse span {
+  width: 80%;
+  height: 2px;
+  margin: 0 auto;
+  display: block;
+  background: #555;
+  transition: all 0.8s cubic-bezier(0.81, -0.33, 0.345, 1.375);
+}
+#sidebarCollapse span:first-of-type {
+  /* rotate first one */
+  transform: rotate(45deg) translate(2px, 2px);
+}
+#sidebarCollapse span:nth-of-type(2) {
+  /* second one is not visible */
+  opacity: 0;
+}
+#sidebarCollapse span:last-of-type {
+  /* rotate third one */
+  transform: rotate(-45deg) translate(1px, -1px);
+}
+#sidebarCollapse.active span {
+  /* no rotation */
+  transform: none;
+  /* all bars are visible */
   opacity: 1;
-}
-section {
-  padding-left: 15px;
+  margin: 5px auto;
 }
 .card-counter {
   box-shadow: 2px 2px 10px #DADADA;
@@ -356,7 +386,7 @@ section {
   box-shadow: 4px 4px 20px #DADADA;
   transition: 0.3s linear all;
 }
-.card-counter.primary{
+.card-counter.primary {
   background-color: #007bff;
   color: #FFF;
 }
@@ -364,11 +394,11 @@ section {
   background-color: #ef5350;
   color: #FFF;
 }
-.card-counter .success {
+.card-counter.success {
   background-color: #66bb6a;
   color: #FFF;
 }
-.card-counter .info {
+.card-counter.info {
   background-color: #26c6da;
   color: #FFF;
 }

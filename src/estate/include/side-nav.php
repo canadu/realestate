@@ -5,48 +5,30 @@ if (empty($_SESSION['role'])) {
 }
 ?>
 <nav id="sidebar">
-    <div class="sidebar-header">
-        <h3>Bootstrap Sidebar</h3>
-    </div>
-
+    <!-- <div class="sidebar-header">
+        <a class="navbar-brand js-scroll-trigger" href="../index.php">SHRS</a>
+    </div> -->
     <ul class="list-unstyled components">
-        <p>Dummy Heading</p>
-        <li class="active">
-            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-            <ul class="collapse list-unstyled" id="homeSubmenu">
-                <li>
-                    <a href="#">Home 1</a>
-                </li>
-                <li>
-                    <a href="#">Home 2</a>
-                </li>
-                <li>
-                    <a href="#">Home 3</a>
-                </li>
-            </ul>
+        <li>
+            <a class="nav-link" href="../auth/dashboard.php">Home</a>
         </li>
         <li>
-            <a href="#">About</a>
+            <?php if ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'user') {
+                echo '<a href="../app/register.php" class="nav-link">Register</a>';
+            } ?>
         </li>
         <li>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-            <ul class="collapse list-unstyled" id="pageSubmenu">
-                <li>
-                    <a href="#">Page 1</a>
-                </li>
-                <li>
-                    <a href="#">Page 2</a>
-                </li>
-                <li>
-                    <a href="#">Page 3</a>
-                </li>
-            </ul>
+            <a href="../app/list.php" class="nav-link">Details/Update</a>
         </li>
         <li>
-            <a href="#">Portfolio</a>
+            <?php if ($_SESSION['role'] == 'admin') {
+                echo '<a href="../app/sms.php" class="nav-link">Send SMS</a>';
+            } ?>
         </li>
         <li>
-            <a href="#">Contact</a>
+            <?php if ($_SESSION['role'] == 'admin') {
+                echo '<a href="../app/cmplist.php" class="nav-link">Complaint List</a>';
+            } ?>
         </li>
     </ul>
 </nav>

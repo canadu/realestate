@@ -49,7 +49,7 @@ if(isset($_POST['login'])) {
                 </li>
             </ul>
         </div>
-    </div>
+    </div>                                                      
 </nav>
 
 <!-- section -->
