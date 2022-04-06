@@ -747,14 +747,15 @@ ul.social-buttons li a {
     }
 }
 
-// *********************************
-// サイバーメニュー
-// *********************************
+/*
+*********************************
+サイバーメニュー
+*********************************
+*/
 
 // SIDEBAR STYLE
 .wrapper {
     display: flex;
-    // width: 100%;
     align-items: stretch;
     perspective: 1500px; 
 }
@@ -854,49 +855,11 @@ a.article:hover {
     transition: all 0.3s;
 }
 
-// MEDIAQUERIES
-@media (max-width: 768px) {
-    #sidebar {
-        margin-left: -250px;
-        transform: rotateY(100deg);
-    }
-
-    #sidebar.active {
-        margin-left: 0;
-        transform: none;
-    }
-
-    #sidebarCollapse span:first-of-type,
-    #sidebarCollapse span:nth-of-type(2),
-    #sidebarCollapse span:last-of-type {
-        transform: none;
-        opacity: 1;
-        margin: 5px auto;
-    }
-
-    /* Removing the vertical margin and make the first and last bars rotate again when the sidebar is open, hiding the second bar */
-    #sidebarCollapse.active span {
-        margin: 0 auto;
-    }
-    #sidebarCollapse.active span:first-of-type {
-        transform: rotate(45deg) translate(2px, 2px);
-    }
-    #sidebarCollapse.active span:nth-of-type(2) {
-        opacity: 0;
-    }
-    #sidebarCollapse.active span:last-of-type {
-        transform: rotate(-45deg) translate(1px, -1px);
-    }
-
-    // #sidebarCollapse span {
-    //     display: none;
-    // }
-}
-
 #sidebarCollapse {
-    width: 40px;
-    height: 40px;
-    background: #f5f5f5;
+    width: 30px;
+    height: 30px;
+    background: #ffffff;
+    cursor: pointer;
 }
 
 #sidebarCollapse span {
@@ -906,6 +869,7 @@ a.article:hover {
     display: block;
     background: #555;
     transition: all 0.8s cubic-bezier(0.810, -0.330, 0.345, 1.375);
+    transition-delay:0.2s;
 }
 
 #sidebarCollapse span:first-of-type {
@@ -929,6 +893,41 @@ a.article:hover {
     opacity: 1;
     margin: 5px auto;
 }
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+        transform: rotateY(90deg);
+    }
+    #sidebar.active {
+        margin-left: 0;
+        transform: none;
+    } 
+    #sidebarCollapse span:first-of-type,
+    #sidebarCollapse span:nth-of-type(2),
+    #sidebarCollapse span:last-of-type {
+        transform: none;
+        opacity: 1;
+        margin: 5px auto;
+    }
+    #sidebarCollapse.active span {
+        margin: 0 auto;
+    }
+    #sidebarCollapse.active span:first-of-type {
+        transform: rotate(45deg) translate(2px, 2px);
+    }
+    #sidebarCollapse.active span:nth-of-type(2) {
+        opacity: 0;
+    }
+    #sidebarCollapse.active span:last-of-type {
+        transform: rotate(-45deg) translate(1px, -1px);
+    }
+
+}
+
 
 // *********************************
 // ダッシュボードの件数

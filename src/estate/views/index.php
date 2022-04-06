@@ -82,7 +82,6 @@
                             </div>
                         </div>
                     </form>
-                    <?php var_dump($content); ?>
                 </div>
             </div>
         </div>

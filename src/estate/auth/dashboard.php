@@ -47,7 +47,6 @@ include '../include/header.php';
         </div>
     </div>
 </nav>
-<!-- end header nav -->
 
 <div class="wrapper">
 

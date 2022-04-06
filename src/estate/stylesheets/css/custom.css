@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body {
   overflow-x: hidden;
   font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -232,6 +233,11 @@ ul.social-buttons li a {
 ul.social-buttons li a:active, ul.social-buttons li a:hover, ul.social-buttons li a:focus {
   background-color: #fed136;
 }
+/*
+*********************************
+サイバーメニュー
+*********************************
+*/
 .wrapper {
   display: flex;
   align-items: stretch;
@@ -313,11 +319,47 @@ a.article, a.article:hover {
   min-height: 100vh;
   transition: all 0.3s;
 }
+#sidebarCollapse {
+  width: 30px;
+  height: 30px;
+  background: #ffffff;
+  cursor: pointer;
+}
+#sidebarCollapse span {
+  width: 80%;
+  height: 2px;
+  margin: 0 auto;
+  display: block;
+  background: #555;
+  transition: all 0.8s cubic-bezier(0.81, -0.33, 0.345, 1.375);
+  transition-delay: 0.2s;
+}
+#sidebarCollapse span:first-of-type {
+  /* rotate first one */
+  transform: rotate(45deg) translate(2px, 2px);
+}
+#sidebarCollapse span:nth-of-type(2) {
+  /* second one is not visible */
+  opacity: 0;
+}
+#sidebarCollapse span:last-of-type {
+  /* rotate third one */
+  transform: rotate(-45deg) translate(1px, -1px);
+}
+#sidebarCollapse.active span {
+  /* no rotation */
+  transform: none;
+  /* all bars are visible */
+  opacity: 1;
+  margin: 5px auto;
+}
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
 @media (max-width: 768px) {
-  /* Removing the vertical margin and make the first and last bars rotate again when the sidebar is open, hiding the second bar */
   #sidebar {
     margin-left: -250px;
-    transform: rotateY(100deg);
+    transform: rotateY(90deg);
   }
   #sidebar.active {
     margin-left: 0;
@@ -340,38 +382,6 @@ a.article, a.article:hover {
   #sidebarCollapse.active span:last-of-type {
     transform: rotate(-45deg) translate(1px, -1px);
   }
-}
-#sidebarCollapse {
-  width: 40px;
-  height: 40px;
-  background: #f5f5f5;
-}
-#sidebarCollapse span {
-  width: 80%;
-  height: 2px;
-  margin: 0 auto;
-  display: block;
-  background: #555;
-  transition: all 0.8s cubic-bezier(0.81, -0.33, 0.345, 1.375);
-}
-#sidebarCollapse span:first-of-type {
-  /* rotate first one */
-  transform: rotate(45deg) translate(2px, 2px);
-}
-#sidebarCollapse span:nth-of-type(2) {
-  /* second one is not visible */
-  opacity: 0;
-}
-#sidebarCollapse span:last-of-type {
-  /* rotate third one */
-  transform: rotate(-45deg) translate(1px, -1px);
-}
-#sidebarCollapse.active span {
-  /* no rotation */
-  transform: none;
-  /* all bars are visible */
-  opacity: 1;
-  margin: 5px auto;
 }
 .card-counter {
   box-shadow: 2px 2px 10px #DADADA;
