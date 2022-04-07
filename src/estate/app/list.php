@@ -54,7 +54,7 @@ include '../include/header.php';
     <?php include '../include/side-nav.php'; ?>
 
     <div id="content">
-        
+
         <!-- サイドバーの開閉ナビゲーション -->
         <button type="button" id="sidebarCollapse" class="navbar-btn">
             <span></span>
@@ -65,16 +65,82 @@ include '../include/header.php';
         <div class="container mt-4">
             <div class="row">
                 <div class="col-md-12">
+
                     <?php if (isset($errMsg)) : ?>
                         <div style="color:#FF0000;text-align:center;font-size:17px;"><?php echo $errMsg; ?></div>';
                     <?php endif; ?>
                     <h2>List of Property Details</h2>
-                    <?php foreach($data as $key => $value); ?>
-                    <div class="card card-inverse card-info mb-3" style="padding:1%;">
-                        <div class="card-block">
-                            <a href="update.php?id="<?php echo $value['id']."&act=" ?> class="btn btn-warning float-right"></a>
+
+                    <?php foreach ($data as $key => $value) : ?>
+                        
+                        <div class="card card-info mb-3" style="padding:1%;">
+
+                            <div class="card-header">
+
+                            </div>
+
+                            <div class="card-block">
+                                <a href="update.php?id=" <?php echo $value['id'] . "&act=" ?> class="btn btn-warning float-right"></a>
+                                <div class="row">
+                                    <div class="col4">
+                                        <h4 class="text-center">Owner Details</h4>
+                                        <p><b>Owner Name:</b><?php echo $value['fullname'] ?></p>
+                                        <p><b>Contact Number:</b><?php echo $value['mobile'] ?></p>
+                                        <p><b>Alternate Number:</b><?php echo $value['alternat_mobile'] ?></p>
+                                        <p><b>Email:</b><?php echo $value['email'] ?></p>
+                                        <p><b>Country:</b><?php echo $value['country'] ?></p>
+                                        <p><b>State:</b><?php echo $value['state'] ?></p>
+                                        <p><b>City:</b><?php echo $value['city'] ?></p>
+                                        <?php if ($value['image'] == 'uploads/') : ?>
+                                            <img src="<?php echo $value['image']; ?>" alt="" width="200">
+                                        <?php endif; ?>
+                                        <p><b>Address:</b><?php echo $value['address'] ?></p>
+                                        <p><b>Landmark:</b><?php echo $value['landmark'] ?></p>
+                                    </div>
+                                    <div class="col-5">
+                                        <h4 class="text-center">Room Details</h4>
+                                        <p><b>Plot Number:</b><?php echo $value['plot_number']; ?></p>
+                                        <?php if (isset($value['sale'])) : ?>
+                                            <p><b>Sale:</b><?php echo $value['sale']; ?></p>
+                                        <?php endif; ?>
+                                        <?php if (isset($value['apartment_name'])) : ?>
+                                            <div class="alert alert-success" role="alert">
+                                                <p><b>Apartment Name:</b><?php echo $value['apartment_name']; ?>/p>
+                                            </div>
+                                        <?php endif; ?>
+                                        <?php if (isset($value['ap_numbers_of_plats'])) : ?>
+                                            <div class="alert alert-success" role="alert">
+                                                <p><b>Flat Number:</b><?php echo $value['ap_numbers_of_plats']; ?>/p>
+                                            </div>
+                                        <?php endif; ?>
+                                        <?php if (isset($value['own'])) : ?>
+                                            <p><b>Available Area:</b><?php echo $value['area']; ?></p>
+                                            <p><b>Floor:</b><?php echo $value['floor']; ?></p>
+                                            <p><b>Owner/Rented:</b><?php echo $value['own']; ?></p>
+                                            <p><b>Purpose:</b><?php echo $value['purpose']; ?></p>
+                                        <?php endif; ?>
+                                        <p><b>Available Rooms:</b><?php echo $value['rooms']; ?></p>
+                                    </div>
+                                    <div class="col-3">
+                                        <h4>Other Details</h4>
+                                        <p><b>Accommodation:</b><?php echo $value['accommodation']; ?></p>
+                                        <p><b>Description:</b><?php echo $value['description']; ?></p>
+                                        <?php if ($value['vacant'] == 0) : ?>
+                                            <div class="alert alert-danger" role="alert">
+                                                <p><b>Occupied</b></p>
+                                            </div>
+                                        <?php else : ?>
+                                            <div class="alert alert-danger" role="alert">
+                                                <p><b>Vacant</b></p>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="../app/complaint.php" class="btn btn-warning float-right">Complaint</a>
                         </div>
-                    </div>
+                    <?php endforeach; ?>
+
                 </div>
             </div>
         </div>
@@ -88,5 +154,5 @@ include '../include/header.php';
             $('#sidebar').toggleClass('active');
             $(this).toggleClass('active');
         });
-    }); 
+    });
 </script>
