@@ -10,7 +10,6 @@
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Theme style -->
-    <link rel="stylesheet" href="../stylesheets/css/adminlte.min.css">
     <title>〇〇不動産</title>
 </head>
 
